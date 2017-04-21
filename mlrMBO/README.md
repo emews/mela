@@ -79,6 +79,7 @@ The ME expects to receive the number of proposed points (`pp`) and the maximum n
 "pp = 3, it = 5"
 ```
 
+
 ## Final protocol ##
 The ME pushes the string "DONE" to the OUT queue to indicate that the algorithm has completed. It will subsequently push the message "Look at final_res.Rds for final results." into the OUT queue and complete.
 
@@ -97,7 +98,7 @@ The `test` directory contains tests for the ME components and for running the ME
 * Required R packages:
   * All required R packages can be installed from within R with:
   ```
-  install.packages(c("<package name 1>", "<package name 2", ...)
+  install.packages(c("<package name 1>", "<package name 2>", ...)
   ```
   * mlrMBO and dependencies : (https://mlr-org.github.io/mlrMBO/).
   * parallelMap : (https://cran.r-project.org/web/packages/parallelMap/index.html)
