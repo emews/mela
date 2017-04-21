@@ -2,7 +2,7 @@
 
 
 ## ME algorithm details ##
-The ME algorithm attempts to minimize an objective function for a parameter space defined using the ParamHelpers library.
+The R-based ME algorithm attempts to minimize an objective function for a parameter space defined using the ParamHelpers library.
 
  For example,
 ```R
