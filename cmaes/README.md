@@ -1,6 +1,6 @@
 # A CMAES based EMEWS model exploration (ME) module #
 
-Acknowlege Daniel Reid
+TODO: acknowlege Daniel Reid
 
 
 ## ME algorithm details ##
