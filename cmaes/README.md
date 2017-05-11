@@ -1,11 +1,13 @@
 # A CMAES based EMEWS model exploration (ME) module #
 
+Acknowlege Daniel Reid
+
 
 ## ME algorithm details ##
 
 TODO
 
-### ME Final Output ###
+## ME Final Output ##
 
 TODO -- currently the last set of parameters
 
