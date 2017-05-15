@@ -3,7 +3,6 @@ import math, copy
 
 class CMAES:
     def __init__(self, nParam, nChild, nSurv, sig):
-#these are all things we know on initialization - nparam is just #bonds or #bonds+#angles
         self.nParam = nParam
         self.nChild = nChild
         self.nSurv = nSurv
