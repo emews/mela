@@ -66,6 +66,7 @@ def run():
 
 
     eqpy.OUT_put("DONE")
+    #print(json.dumps(log, sort_keys=True,indent=4, separators=(',', ': ')))
 
     # emews should set this var
     out_dir = os.environ.get('TURBINE_OUTPUT')

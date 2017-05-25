@@ -49,7 +49,55 @@ range of *0 - 110*.
 
 ## Final protocol ##
 The ME pushes the string "DONE" to the OUT queue to indicate that the algorithm
-has completed. It will subsequently push the final set set of parameters.
+has completed. It will subsequently push a message string indicating where the
+model exploration history has been written out. Typically this will be in
+the directory specified by the TURBINE_OUTPUT environment variable. For
+example: "See /X/Y/Z/cmaes_history.json for model exploration history".
+
+The model exploration history is written out in JSON format as a JSON
+array of length `max_iter`. The *n*-th element of the array contains the
+data for the *n*-th iteration. Each element of the array contains a
+dictionary with two elements: the `me_parameters` and the `model_result`.
+The `me_parameters` specifies the model parameters produced by the CM-AES
+algorithm and `model_result` specifies the results of running the model
+with those parameters. For example,
+
+```javascript
+[
+    ...
+    {
+        "me_parameters": [
+            [
+                24.66299068887551,
+                94.781402836274
+            ],
+            [
+                24.66299715432471,
+                94.78142617556536
+            ],
+            [
+                24.662976073843083,
+                94.78141061276041
+            ],
+            [
+                24.662993706845448,
+                94.78143212648598
+            ]
+        ],
+        "model_result": [
+            51.4522893642,
+            51.4523064937,
+            51.4523033295,
+            51.4523133708
+        ]
+    }
+    ...
+]
+```
+
+The values within the dictionary are ordered such that the *n*-th element
+of the `model_result` list is the result of running the *n*-th parameter set
+of the `me_parameters` list.
 
 ## Testing and running the ME module
 The `test` directory contains a test (`test.py`) for `emews_cmaes` that runs

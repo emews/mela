@@ -22,7 +22,7 @@ def main():
     # json string
     max_iter = 200
     params = {'n_child' : 250, 'n_surv' : 10, 'sig' : 0.1,
-              'max_iter' : max_iter, 'init_params' : [25, 95], 'bounds' : [(0, 100), (0, 100)], 'history' : False}
+              'max_iter' : max_iter, 'init_params' : [25, 95], 'bounds' : [(0, 100), (0, 100)]}
     eqpy.input_q.put(json.dumps(params))
 
     # count the number of iteations to make sure
@@ -55,7 +55,6 @@ def main():
 
     # load the history file for testing purposes
     # typically a swift script wouldn't do anything with this
-
     with open("./cmaes_history.json") as f_in:
         history = json.load(f_in)
         p = history[-1]['me_parameters'][3]
