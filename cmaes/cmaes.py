@@ -2,8 +2,8 @@ import numpy as np
 import math, copy
 
 class CMAES:
+
     def __init__(self, params, bounds, nChild, nSurv, sig):
-#these are all things we know on initialization - nparam is just #bonds or #bonds+#angles
         self.nParam = len(params)
         self.nChild = nChild
         self.nSurv = nSurv
@@ -13,9 +13,7 @@ class CMAES:
         self.acov = 1.0 / self.nSurv
         self.ccov = (2*self.acov)/(self.nParam+2**0.5)**2 + (1-self.acov)*min(1, (2*self.nSurv-1) / ((self.nParam+2)**2 + self.nSurv))
         self.chiN = self.nParam**0.5 * (1 - 1.0/(4*self.nParam) + 1.0/(21*self.nParam**2))
-        #print self.ccov
-#for csif I had self.nParam + 2 in test.py - this was a typo
-        self.csig = 4.0 / (self.nParam+1) #when this is self.nParam+2, it works great in 1 dim
+        self.csig = 4.0 / (self.nParam+1)
         self.dsig = 1.0/sig + 1
         self.C = np.matrix(np.identity(self.nParam))
         self.D = np.matrix(np.identity(self.nParam))
@@ -27,7 +25,6 @@ class CMAES:
         self.Xu = None
 #number of times nextParams has been called
         self.nIter = 0
-#the parameters that I last sent back to swift/t
         self.workingParams = []
         self.objBest = None
         self.bounds = None
@@ -83,7 +80,6 @@ class CMAES:
         if isinstance(objectives, str):
             objectives = eval(objectives)
         #print objectives
-
 
         objZip = zip(range(len(objectives)), objectives)
         objZipSort = sorted(objZip, key=lambda x: x[1])
