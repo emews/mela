@@ -21,8 +21,8 @@ def main():
     # send the parameters required to initialize cmaes as a
     # json string
     max_iter = 200
-    params = {'n_param' : 2, 'n_child' : 250, 'n_surv' : 10, 'sig' : 0.1,
-              'max_iter' : max_iter, 'init_vals' : [25, 95], 'init_bounds' : [(0, 100), (0, 100)]}
+    params = {'n_child' : 250, 'n_surv' : 10, 'sig' : 0.1,
+              'max_iter' : max_iter, 'init_params' : [25, 95], 'bounds' : [(0, 100), (0, 100)], 'history' : False}
     eqpy.input_q.put(json.dumps(params))
 
     # count the number of iteations to make sure
@@ -50,13 +50,19 @@ def main():
             # to cmaes
             eqpy.input_q.put(objs_string)
 
-    # get the final set of parameters
-    final_param_string = eqpy.output_q_get()
-    params_list = [[float(y) for y in x.split(',')] for x in final_param_string.split(';')]
-    p = params_list[3]
-    assert p[0] > 49 and p[0] < 51 and p[1] > 49 and p[1] < 51
-    assert iter_count == max_iter
-    print("PASSED")
+    # gets the final "see X for history" message
+    print(eqpy.output_q_get())
+
+    # load the history file for testing purposes
+    # typically a swift script wouldn't do anything with this
+
+    with open("./cmaes_history.json") as f_in:
+        history = json.load(f_in)
+        p = history[-1]['me_parameters'][3]
+        # if n_child is not 250 this first assert may fail
+        assert p[0] > 49 and p[0] < 51 and p[1] > 49 and p[1] < 51
+        assert iter_count == max_iter
+        print("PASSED")
 
 if __name__ == '__main__':
     main()

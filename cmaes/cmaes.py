@@ -2,9 +2,9 @@ import numpy as np
 import math, copy
 
 class CMAES:
-    def __init__(self, nParam, nChild, nSurv, sig):
+    def __init__(self, params, bounds, nChild, nSurv, sig):
 #these are all things we know on initialization - nparam is just #bonds or #bonds+#angles
-        self.nParam = nParam
+        self.nParam = len(params)
         self.nChild = nChild
         self.nSurv = nSurv
         self.sig = sig
@@ -32,15 +32,15 @@ class CMAES:
         self.objBest = None
         self.bounds = None
 
-
-    def init_params(self, params):  #params should be 1(row) X nParam(col)
         if isinstance(params, str):
             params = eval(params)
-        assert(len(params) == self.nParam)
         self.Xu = np.array(params)
-    def init_bounds(self, bounds):
+
         if isinstance(bounds, str):
             bounds = eval(bounds)
+        if len(bounds) != self.nParam:
+            raise ValueError("Length of bounds and number of params are not equal.")
+
         assert(len(bounds) == self.nParam)
         self.bounds = bounds
 
