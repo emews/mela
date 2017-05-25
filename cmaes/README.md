@@ -58,7 +58,7 @@ The model exploration history is written out in JSON format as a JSON
 array of length `max_iter`. The *n*-th element of the array contains the
 data for the *n*-th iteration. Each element of the array contains a
 dictionary with two elements: the `me_parameters` and the `model_result`.
-The `me_parameters` specifies the model parameters produced by the CM-AES
+The `me_parameters` specifies the model parameters produced by the CMA-ES
 algorithm and `model_result` specifies the results of running the model
 with those parameters. For example,
 
