@@ -9,8 +9,8 @@ TODO
 
 ## ME Final Output file: cmaes_history.json
 
-At the end of its run, `emews_cmaes` produces a file name `cmaes_history.json`
-that contains the history of the CMA-ES model exploration. Typically the file
+At the end of its run, `emews_cmaes` produces a file named `cmaes_history.json`
+that contains the history of the CMA-ES model exploration. Typically that file
 is written to the directory specified by the `TURBINE_OUTPUT` environment variable
 or in the current working directory if `TURBINE_OUTPUT` is not specified.
 
