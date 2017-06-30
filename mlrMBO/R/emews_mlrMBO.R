@@ -53,6 +53,10 @@ parallelMap2 <- function(fun, ...,
     return(result_with_extras_if_exist(res,st[3]))
   }
 }
+# Unload in case the namespaces are loaded in the workspace
+unloadNamespace("mlrMBO")
+unloadNamespace("mlr")
+unloadNamespace("parallelMap")
 
 require(parallelMap)
 require(jsonlite)
@@ -69,24 +73,15 @@ library(mlrMBO)
 # main function using multiple point proposals for parallelism
 # see: https://mlr-org.github.io/mlrMBO/articles/supplementary/parallelization.html
 main_function <- function(max.budget = 15, max.iterations = 2, design.size=5, propose.points=5){
-  # ctrl = makeMBOControl(n.objectives = 1, propose.points = propose.points)
-  # ctrl = setMBOControlInfill(ctrl, crit = crit.ei)
-  # ctrl = setMBOControlMultiPoint(ctrl, method = "cl", cl.lie = min)
-  # ctrl = setMBOControlTermination(ctrl, max.evals = max.budget)
-  # ctrl = setMBOControlTermination(ctrl, iters = max.iterations)
-  # design = generateDesign(n = design.size, par.set = getParamSet(obj.fun))
-  # configureMlr(on.learner.warning = "quiet", show.learner.output = FALSE)
-  #
-  # res = mbo(obj.fun, control = ctrl, design = design, show.info = FALSE)
-  # return(res)
-  surr.rf = makeLearner("regr.randomForest", predict.type = "se")
   ctrl = makeMBOControl(n.objectives = 1, propose.points = propose.points)
+  ctrl = setMBOControlInfill(ctrl, crit = crit.ei)
+  ctrl = setMBOControlMultiPoint(ctrl, method = "cl", cl.lie = min)
   ctrl = setMBOControlTermination(ctrl, max.evals = max.budget)
   ctrl = setMBOControlTermination(ctrl, iters = max.iterations)
- # ctrl = setMBOControlInfill(ctrl, crit =makeMBOInfillCritCB(), opt.focussearch.points = 500)
   design = generateDesign(n = design.size, par.set = getParamSet(obj.fun))
-  configureMlr(show.info = FALSE, show.learner.output = FALSE, on.learner.warning = "quiet")
-  res = mbo(obj.fun, design = design, learner = surr.rf, control = ctrl, show.info = TRUE)
+  configureMlr(on.learner.warning = "quiet", show.learner.output = FALSE)
+
+  res = mbo(obj.fun, control = ctrl, design = design, show.info = FALSE)
   return(res)
 }
 
