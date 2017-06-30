@@ -20,14 +20,12 @@ OUT_put <- function(x) {
     }
     else if (x == "Params") {
       ## Handshake protocol
-      for.In_get <<- "max.budget = 30, max.iterations = 2, design.size=10, propose.points=3, param.set.file='../data/parameter_set.R'"
+      for.In_get <<- "max.budget = 60, max.iterations = 5, design.size=10, propose.points=10, param.set.file='../data/parameter_set.R'"
     }
     else {
-      res <- split.json.into.dummy.param.lines(x)
-      print(paste0("res: ",res))
+      print(paste0("OUT queue receiving: ", x))
+      res <- split.json.into.param.lines(x)
       resFull <- lapply(res,simple.obj.fun2)
-      print(paste0("resFull = ", resFull))
-      #for.In_get <<- make.into.q.res(resFull)
       for.In_get <<- make.into.q.res(resFull)
     }
   }
@@ -36,7 +34,7 @@ OUT_put <- function(x) {
   }
 }
 IN_get <- function(){
-  print(paste0("returning: ", for.In_get))
+  print(paste0("IN queue returning: ", for.In_get))
   return(for.In_get)
 }
 

@@ -1,4 +1,6 @@
 # Utility code to transform elements to strings and vice versa
+require(jsonlite)
+
 elements_to_string <- function(x){
   paste0(x,collapse = ",")
 }

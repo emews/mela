@@ -23,8 +23,6 @@ parallelMap2 <- function(fun, ...,
                          level = NA_character_,
                          show.info = NA){
   st = proc.time()
-  #print(paste0("in parallelMap2 ", design.size))
-  print(paste0("in parallelMap2 called"))
   if (deparse(substitute(fun)) == "proposePointsByInfillOptimization"){
     return(pm(fun, ..., more.args = more.args, simplify = simplify, use.names = use.names, impute.error = impute.error,
        level = level, show.info = show.info))
@@ -34,7 +32,7 @@ parallelMap2 <- function(fun, ...,
     # into EMEWS json convention
     dots <- list(...)
     string_params <- elements_of_lists_to_json(dots[[1L]])
-    print(paste0("parallelMap2 called with list_param: ",string_params))
+    # print(paste0("parallelMap2 called with list_param: ",string_params))
     # Insert json string representation into EQ/R OUT queue
     OUT_put(string_params)
     # Receive string representation of evaluated objective functions

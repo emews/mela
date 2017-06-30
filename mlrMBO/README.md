@@ -22,49 +22,49 @@ The maximum algorithm iteration is specified via a `max.iterations=<number of ma
 
 ### ME output file: final_res.Rds ###
 mlrMBO's mbo function produces a MBOSingleObjResult object. That object is
-saved to the file system either to the working directory or, if within an EMEWS workflow, to the experiment directory as `final_res.Rds` and can be loaded within an R session using `readRDS("<path to>/final_res.Rds")`. The results contain the final best parameter values (the 'x' attribute) and associated metadata about the parameter evaluations. Sample R
+saved to the file system either to the R directory or, if within an EMEWS workflow, to the experiment directory as `final_res.Rds` and can be loaded within an R session using `readRDS("<path to>/final_res.Rds")`. The results contain the final best parameter values (the 'x' attribute) and associated metadata about the parameter evaluations. Sample R
 session:
 
 ```R
 > res <- readRDS("final_res.Rds")
 > res
 Recommended parameters:
-x1=-0.0666; x2=-0.0653
-Objective: y = 0.009
+x1=-0.00348; x2=0.00039
+Objective: y = 0.000
 
 Optimization path
-8 + 10 entries in total, displaying last 10 (or less):
-            x1          x2            y dob eol error.message exec.time          ei error.model train.time
-9   0.45059800  0.18132741  0.235918185   1  NA          <NA>     0.000 -12.7373597        <NA>      0.091
-10 -1.58082671 -2.34834688  8.013746142   1  NA          <NA>     0.000  -6.8104158        <NA>         NA
-11 -0.65688018 -0.33727720  0.545247477   2  NA          <NA>     0.000  -1.7456097        <NA>      0.048
-12 -0.40940021  0.94706024  1.064531638   2  NA          <NA>     0.000  -1.3855241        <NA>         NA
-13  0.16459938 -1.12695820  1.297127739   3  NA          <NA>     0.000  -0.9964390        <NA>      0.056
-14  1.42611610 -0.69637200  2.518741101   3  NA          <NA>     0.000  -0.6839068        <NA>         NA
-15 -0.06663489 -0.06527286  0.008700755   4  NA          <NA>     0.001  -0.4316389        <NA>      0.055
-16 -1.18530439  0.35496120  1.530943945   4  NA          <NA>     0.001  -0.2697869        <NA>         NA
-17  4.99974102 -0.47807419 25.225965199   5  NA          <NA>     0.001  -0.1285891        <NA>      0.057
-18  3.92648006  0.10692619 15.428678884   5  NA          <NA>     0.001  -0.9169606        <NA>         NA
-   prop.type propose.time         se        mean
-9  infill_ei        0.076 20.9490796  3.67770913
-10 infill_ei        0.160 20.0269748 13.81438911
-11 infill_ei        0.068  4.2506720  0.13715969
-12 infill_ei        0.063  3.8944527  0.58464278
-13 infill_ei        0.073  3.3999417  1.02933270
-14 infill_ei        0.078  3.7482281  2.30188392
-15 infill_ei        0.069  0.7848909  0.02200744
-16 infill_ei        0.174  1.7664727  1.40237084
-17 infill_ei        0.074 13.7356711 26.97661021
-18 infill_ei        0.073  4.0697096  1.69760612
+10 + 50 entries in total, displaying last 10 (or less):
+             x1            x2          y dob eol error.message exec.time           ei error.model
+51  0.021268669 -0.0015876795 0.00045625   5  NA          <NA>     0.005 -0.003052062        <NA>
+52  0.001726581 -0.0109929332 0.00012389   5  NA          <NA>     0.005 -0.003133601        <NA>
+53 -0.003482415  0.0003902262 0.00001241   5  NA          <NA>     0.005 -0.003107291        <NA>
+54 -0.010112463  0.0047225396 0.00012410   5  NA          <NA>     0.005 -0.002959909        <NA>
+55 -0.007467093  0.0036184161 0.00006921   5  NA          <NA>     0.005 -0.002792420        <NA>
+56 -0.008373364  0.0172918730 0.00036985   5  NA          <NA>     0.005 -0.002687781        <NA>
+57  0.017026402 -0.0008350774 0.00028964   5  NA          <NA>     0.005 -0.002691925        <NA>
+58  0.006735039  0.0096698516 0.00013898   5  NA          <NA>     0.005 -0.002702887        <NA>
+59 -0.256377756 -0.0120437196 0.06588496   5  NA          <NA>     0.005 -0.001059505        <NA>
+60 -0.238420904 -0.0144036386 0.05704192   5  NA          <NA>     0.005 -0.003761101        <NA>
+   train.time prop.type propose.time          se         mean
+51      0.177 infill_ei        0.144 0.007887601 4.572985e-04
+52         NA infill_ei        0.144 0.007626472 8.572543e-05
+53         NA infill_ei        0.114 0.007473337 1.775290e-05
+54         NA infill_ei        0.107 0.007343511 2.058337e-04
+55         NA infill_ei        0.119 0.006878015 1.697411e-04
+56         NA infill_ei        0.130 0.006997037 4.759549e-04
+57         NA infill_ei        0.134 0.006791627 3.013381e-04
+58         NA infill_ei        0.135 0.006652569 1.689551e-04
+59         NA infill_ei        0.153 0.041744149 6.548829e-02
+60         NA infill_ei        0.149 0.011104461 1.675296e-03
 > res$x
 $x1
-[1] -0.06663489
+[1] -0.003482415
 
 $x2
-[1] -0.06527286
+[1] 0.0003902262
 
 > res$y
-[1] 0.008700755
+[1] 1.241e-05
 ```
 Note that without the mlrMBO etc. packages installed, you can load the object
 but it will not print etc. correctly.
@@ -83,7 +83,7 @@ The ME expects to receive the following algorithm parameters:
 
 This should be formatted as a string of comma separated key = value pairs. E.g.,:
 ```R
-"max.budget = 30, max.iterations = 2, design.size=3, propose.points=3, param.set.file='../data/parameter_set.R'"
+"max.budget = 60, max.iterations = 5, design.size=10, propose.points=10, param.set.file='../data/parameter_set.R'"
 ```
 
 
@@ -108,6 +108,7 @@ The `R/test` directory contains tests for the ME components and for running the 
   ```
   install.packages(c("<package name 1>", "<package name 2>", ...)
   ```
+  * jsonlite : (https://cran.r-project.org/web/packages/jsonlite/index.html)
   * mlrMBO and dependencies : (https://mlr-org.github.io/mlrMBO/).
   * parallelMap : (https://cran.r-project.org/web/packages/parallelMap/index.html)
   * DiceKriging and dependencies : (https://cran.r-project.org/web/packages/DiceKriging/index.html)

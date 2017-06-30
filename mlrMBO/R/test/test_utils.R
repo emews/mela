@@ -5,11 +5,10 @@ split.into.param.lines <- function(x){
   lapply(strsplit(res1,split = ","), function(x) as.numeric(x))
 }
 
-split.json.into.dummy.param.lines <- function(x){
+split.json.into.param.lines <- function(x){
   res1 <- unlist(strsplit(x,split = ";"))
-  l <- length(res1)
-  res <- 1:l
-  return(res)
+  res2 <- lapply(lapply(res1,fromJSON),unlist)
+  return(res2)
 }
 
 make.into.q.res <- function(x){
