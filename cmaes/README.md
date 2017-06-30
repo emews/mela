@@ -8,7 +8,7 @@ CMA-ES is an evolutionary optimization scheme which uses the covariance matrix o
 
 ## ME Final Output file: cmaes_history.json
 
-At the end of its run, `emews_cmaes` produces a file named `cmaes_history.json`
+At the end of its run, `python/emews_cmaes` produces a file named `cmaes_history.json`
 that contains the history of the CMA-ES model exploration. Typically that file
 is written to the directory specified by the `TURBINE_OUTPUT` environment variable
 or in the current working directory if `TURBINE_OUTPUT` is not specified.
@@ -107,10 +107,10 @@ model exploration history (see above) has been written out.
 
 
 ## Testing and running the ME module
-The `test` directory contains a test (`test.py`) for `emews_cmaes` that runs
-the ME algorithm with python and eqpy (included in the `test` directory), but
+The `python/test` directory contains a test (`test.py`) for `python/emews_cmaes` that runs
+the ME algorithm with python and eqpy (included in the `python/test` directory), but
 without Swift/T. To run the test, run the `run_test.sh` bash script in the
-`test` directory.
+`python/test` directory.
 
 ## ME Requirements ##
 
