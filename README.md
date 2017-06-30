@@ -4,3 +4,4 @@ Mel&#257; (Sanskrit: मेला): Sanskrit word meaning 'gathering' or 'to mee
 
 Currently included ME modules:
 * [mlrMBO](mlrMBO)
+* [cmaes](cmaes)
