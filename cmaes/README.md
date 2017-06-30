@@ -75,8 +75,8 @@ initialization parameters from the Swift-t workflow (inserted with an
 * **n_surv**: How many children to use to seed the next generation.  The n_surv which have the lowest objective function are used.
 * **sig**: Describes the initial spread of the parameters.
 * **max_iter**: The number of iterations to perform. `emews_cmaes` will produce
- _n_child_ number of parameter sets per iteration for a total number of
- evalutions equal to *n_child* \* *max_iter*.
+ `n_child` number of parameter sets per iteration for a total number of
+ evalutions equal to `n_child` \* `max_iter`.
 * **history** (optional): if False, then only the final iteration will be
 written out, otherwise the complete history is written. Defaults to True.
 
