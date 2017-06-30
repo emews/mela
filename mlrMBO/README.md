@@ -10,15 +10,15 @@ The R-based ME algorithm attempts to minimize an objective function for a parame
     makeNumericParam("x1", lower = -5, upper = 5),
     makeNumericParam("x2", lower = -10, upper = 20))
 ```
-This defines the two dimensional space `(x1,x2)` with the specified limits.  See http://berndbischl.github.io/ParamHelpers/man/makeParamSet.html for more details on defining parameter sets.
+This defines the two dimensional space `(x1,x2)` with the specified limits.  This is defined in the `data/parameter_set.R` file, and is read in by the algorithm. See http://berndbischl.github.io/ParamHelpers/man/makeParamSet.html for more details on defining parameter sets.
 
-The algorithm makes use of existing capabilities from mlrMBO:
+In this example, we make use of existing capabilities from mlrMBO:
 * **expected improvement** for the infill criterion
 * **constant liar** for multi-point proposals
 
-The example uses **multi-point proposals** for concurrency in the iterative steps, defined via a `pp=<number of proposed points>` passed in via the [handshake protocol](#handshake-protocol). See https://mlr-org.github.io/mlrMBO/articles/supplementary/parallelization.html for more information on parallelization in mlrMBO.
+The example uses **multi-point proposals** for concurrency in the iterative steps, defined via a `propose.points=<number of proposed points>` passed in via the [handshake protocol](#handshake-protocol). See https://mlr-org.github.io/mlrMBO/articles/supplementary/parallelization.html for more information on parallelization in mlrMBO.
 
-The maximum algorithm iteration is specified via a `it=<number of max iterations>` argument, also defined via the [handshake protocol](#handshake-protocol).
+The maximum algorithm iteration is specified via a `max.iterations=<number of max iterations>` argument, also defined via the [handshake protocol](#handshake-protocol).
 
 ### ME output file: final_res.Rds ###
 mlrMBO's mbo function produces a MBOSingleObjResult object. That object is
@@ -74,10 +74,18 @@ documentation: https://cran.r-project.org/web/packages/mlrMBO/mlrMBO.pdf
 
 
 ## Handshake protocol ##
-The ME expects to receive the number of proposed points (`pp`) and the maximum number of algorithm iterations (`it`) when it calls `IN_get()` for the first time. This should be formatted as a string of comma separated key = value pairs. E.g.,:
+The ME expects to receive the following algorithm parameters:
+- max.budget - Maximum total number of objective function evaluations, including both design and iteration evaluations.
+- max.iterations - Total number of iterative sampling rounds after the initial design sampling.
+- design.size - Total number of design points/evaluations in the initial sampling.
+- propose.points - Total number of evaluations within each iteration of the mbo algorithm.
+- param.set.file - the file that defines the parameter space, including constraints.
+
+This should be formatted as a string of comma separated key = value pairs. E.g.,:
 ```R
-"pp = 3, it = 5"
+"max.budget = 30, max.iterations = 2, design.size=3, propose.points=3, param.set.file='../data/parameter_set.R'"
 ```
+
 
 
 ## Final protocol ##
@@ -85,9 +93,9 @@ The ME pushes the string "DONE" to the OUT queue to indicate that the algorithm 
 
 
 ## Testing and running the ME module
-The `test` directory contains tests for the ME components and for running the ME algorithm with R (i.e., without Swift/T).
-* `mlrMBO_utils_tests.R`: unit tests for `mlrMBO_utils.R`, which provides R components to the ME (run using the testthat library's `test_file("<path to>/mlrMBO_utils_tests.R")` function)
-* `emews_mlrMBO_run.R`: script that provides R implementations for the EQ/R `OUT_put` and `IN_get` calls to be able to run `emews_mlrMBO.R` at smaller scales for testing without Swift/T (run from top directory via `source("test/simple_mlrMBO_run_test.R")`)
+The `R/test` directory contains tests for the ME components and for running the ME algorithm with R (i.e., without Swift/T).
+* `mlrMBO_utils_tests.R`: unit tests for `R/mlrMBO_utils.R`, which provides R components to the ME (run using the testthat library's `test_file("<path to>/mlrMBO_utils_tests.R")` function)
+* `emews_mlrMBO_run.R`: script that provides R implementations for the EQ/R `OUT_put` and `IN_get` calls to be able to run `emews_mlrMBO.R` at smaller scales for testing without Swift/T (run from `R` directory via `source("test/emews_mlrMBO_run.R")`)
 * `test_utils_tests.R`: tests for functions in `test/test_utils.R` which are used to make `emews_mlrMBO_run.R` work (run using `test_file("<path to>/test_utils_tests.R")`)
 
 

@@ -1,5 +1,6 @@
 # run with test_file("mlrMBO_utils_tests.R")
 require(testthat)
+source("../mlrMBO_utils.R")
 
 test_that("list_to_string works",{
   l = list(x1 = -4.5, x2 = 6.3)
@@ -15,6 +16,16 @@ test_that("elements_of_lists_to_string works",{
   l3 = list(l1,l2)
   expected_string = "-4.5, 6.3;7.6, 0.3"
   result_string = elements_of_lists_to_string(l3)
+  # print(result_string)
+  expect_equal(expected_string,result_string)
+})
+
+test_that("elements_of_lists_to_json works",{
+  l1 = list(x1 = -4.5, x2 = 6.3)
+  l2 = list(x1 = 7.6, x2 = 0.3)
+  l3 = list(l1,l2)
+  expected_string = "{\"x1\":-4.5,\"x2\":6.3};{\"x1\":7.6,\"x2\":0.3}"
+  result_string = elements_of_lists_to_json(l3)
   # print(result_string)
   expect_equal(expected_string,result_string)
 })

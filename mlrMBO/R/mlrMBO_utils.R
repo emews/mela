@@ -19,6 +19,10 @@ string_to_list_of_vectors <- function(x){
   lapply(unlist(strsplit(x,";")),function(y) as.numeric(unlist(strsplit(y,","))))
 }
 
+elements_of_lists_to_json <- function(x){
+  paste0(sapply(x,toJSON,auto_unbox = T),collapse = ';')
+}
+
 # For a result element, res_element, append user extras if they exist
 append_extras_if_exist <- function(res_element,x){
   if (length(x) > 1){
