@@ -2,8 +2,9 @@
 
 
 ## ME algorithm details ##
-The R-based ME algorithm attempts to minimize an objective function for a parameter space defined using the ParamHelpers library.
+This example presents an R-based ME algorithm (`R/emews_mlrMBO.R`) utilizing the mlrMBO (https://mlr-org.github.io/mlrMBO/) R package. See https://arxiv.org/abs/1703.03373 for a detailed description of model-based optimization and mlrMBO capabilities.
 
+The ME algorithm minimizes an objective function for a parameter space defined using the ParamHelpers library.
  For example,
 ```R
   par.set = makeParamSet(
@@ -12,7 +13,7 @@ The R-based ME algorithm attempts to minimize an objective function for a parame
 ```
 This defines the two dimensional space `(x1,x2)` with the specified limits.  This is defined in the `data/parameter_set.R` file, and is read in by the algorithm. See http://berndbischl.github.io/ParamHelpers/man/makeParamSet.html for more details on defining parameter sets.
 
-In this example, we make use of existing capabilities from mlrMBO:
+We make use of existing capabilities from mlrMBO:
 * **expected improvement** for the infill criterion
 * **constant liar** for multi-point proposals
 
