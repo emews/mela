@@ -1,4 +1,5 @@
 # A Spearmint-based EMEWS model exploration (ME) module
+(Provided by Laura Schultz, George Mason University.)
 
 This repository integrates the Spearmint code method--specifically, the Spearmint-lite version-- with EMEWS.
 
