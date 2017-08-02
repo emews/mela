@@ -1,0 +1,9 @@
+{
+    "seed":         42,
+    "num_iter":     30,
+    "num_pop":      6,
+    "sigma":        0.1,
+    "mate_pb":      0.5,
+    "mutate_pb":    0.5,
+    "crossover_pb": 0.5
+}
