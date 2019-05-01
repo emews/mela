@@ -57,6 +57,12 @@ loop(int N)
       finals = EQPy_get(GA);
       printf("Swift: finals: %s", finals);
     }
+    else if (message == "EQPY_ABORT")
+    {
+      printf("Swift: EQ/Py aborted!") =>
+        v = make_void() =>
+        c = false;
+    }
     else
     {
       string params[] = split(message, ";");
