@@ -139,5 +139,5 @@ def load_settings(settings_filename):
     except KeyError as e:
         print("Settings file (%s) does not contain key: %s" % (settings_filename, str(e)))
         sys.exit(1)
-    print "num_iter: ", num_iter
+    print("num_iter: ", num_iter)
     print("Settings loaded.")
