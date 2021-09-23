@@ -34,9 +34,7 @@ $ swift/run --settings=swift/settings.json > run.log
 
 The objective function, +f()+ is expressed as:
 
-Python: https://github.com/emews/mela/blob/master/deap/swift/workflow.swift[workflow.swift]
-
-Tcl: https://github.com/emews/mela/blob/master/deap/Tcl/Tcl-Task/task.tcl[task.tcl]
+Python: https://github.com/emews/mela/blob/master/deap/swift/workflow.swift[workflow.swift] in function `task()`
 
 For plotting in https://github.com/emews/EQ-Py/blob/master/examples/ga0/plots/f.m[f.m]
 (see below for plotting information).
