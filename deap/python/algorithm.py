@@ -101,7 +101,7 @@ def run():
     toolbox.register("evaluate", obj_func)
     toolbox.register("mate", cxUniform, indpb=mate_pb)
     toolbox.register("mutate", custom_mutate, indpb=mutate_pb)
-    toolbox.register("select", tools.selTournament, tournsize=num_pop/2)
+    toolbox.register("select", tools.selTournament, tournsize=int(num_pop/2))
     toolbox.register("map", queue_map)
 
     pop = toolbox.population(n=num_pop)
