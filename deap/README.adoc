@@ -9,9 +9,11 @@ _sin(4x) + sin(4y) - 2x + x² - 2y + y²_
 
 == Installation
 
-Clone EQ-Py and install it into the ext/ directory.
+Install http://swift-lang.github.io/swift-t/guide.html#build_python[Swift/T with Python].
 
 ----
+# Install DEAP:
+$ pip install deap
 $ git clone git@github.com:emews/mela.git
 $ git clone git@github.com:emews/EQ-Py.git
 $ cd mela/deap # This example
@@ -20,6 +22,8 @@ $ ../../EQ-Py/src/install ext/EQ-Py
 file creation messages
 ...
 ----
+
+NOTE: Make sure the `python` in your `PATH` matches the Python used to install Swift/T.
 
 == Run
 
